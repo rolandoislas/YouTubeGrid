@@ -45,6 +45,7 @@ webServer.addGet("/watch/:id", function(req, res, next) {
 });
 // Podcast redirect
 webServer.addGet("/podcast*", function(req, res, next) {
+	console.log(req.originalUrl);
 	res.redirect(301, req.originalUrl.replace("/podcast", "https://podcast.rolandoislas.com"));
 });
 webServer.run();
