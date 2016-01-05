@@ -1,0 +1,8 @@
+{
+  "name": "YouTubeGrid",
+  "description": "A grid of YouTube videos.",
+  "repository": "https://github.com/rolandoislas/YouTubeGrid",
+  "logo": "",
+  "keywords": ["node", "podcast"],
+  "image": "heroku/nodejs"
+}

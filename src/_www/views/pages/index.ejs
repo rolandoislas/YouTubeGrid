@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<% include ../partials/header.ejs %>
+</head>
+<body>
+	<% include ../partials/nav.ejs %>
+	<script src="/js/list.js"></script>
+	<div id="feature-container">
+		<div id="video-thumb-overlay"></div>
+	</div>
+	<div id="filter-container">
+		<div id="search-container">
+			<div id="search-form">
+				<input type="text" id="search-field" class="search-field" name="q">
+				<div id="search-submit"></div>
+			</div>
+		</div>
+	</div>
+	<div id="video-list-container">
+		<div id="list-chunk-container"></div>
+		<div style="clear:both;"></div>
+		<div id="list-load-more" class="link">Load More</div>
+	</div>
+	<% include ../partials/footer.ejs %>
+</body>
+</html>

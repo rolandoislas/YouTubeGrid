@@ -1,0 +1,26 @@
+{
+  "name": "youtubegrid",
+  "version": "0.1.0",
+  "description": "A grid of YouTube videos.",
+  "author": "Rolando Islas <admin@rolandoislas.com>",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js"
+  },
+  "dependencies": {
+    "ejs": "2.3.3",
+    "express": "4.13.3"
+  },
+  "engines": {
+    "node": "0.12.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rolandoislas/YouTubeGrid"
+  },
+  "keywords": [
+    "node",
+    "youtube"
+  ],
+  "license": "GPL-2.0"
+}
