@@ -1,7 +1,6 @@
 var Http = function(port) {
 	this.port = port;
 	this.Express = require('express');
-	this.bodyParser = require('body-parser');
 	this.gets = [];
 	this.posts = [];
 };
@@ -13,9 +12,6 @@ Http.prototype.run = function() {
 		app.use(redirectHeroku);
 		app.use(forceSsl);
 	}
-	
-	app.use(this.bodyParser.json());
-	app.use(this.bodyParser.urlencoded({ extended: true }));
 	
 	for (var i = 0; i < this.gets.length; i++) {
 		app.get(this.gets[i][0], this.gets[i][1]);
