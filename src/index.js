@@ -43,6 +43,10 @@ webServer.addGet("/watch/:id", function(req, res, next) {
 		});
 	});
 });
+// Podcast redirect
+webServer.addGet("/podcast*", function(req, res, next) {
+	res.redirect(301, req.originalUrl.replace("/podcast", "https:://podcast.rolandoislas.com"));
+});
 webServer.run();
 
 process.on("uncaughtException", function(err) {
