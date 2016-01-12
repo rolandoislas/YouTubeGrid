@@ -64,4 +64,15 @@ YouTube.prototype.search = function(query, token, callback) {
 	});
 };
 
+YouTube.prototype.isLive = function(callback) {
+	var url = this.API_URL + "search?part=snippet&channelId=UCDcW8nr3bmZiu3z6UtHqQAQ"
+		+ "&eventType=live&maxResults=1&safeSearch=none&type=video" + this.API_KEY;
+	getJson(this, url, function(err, data) {
+		if (err)
+			return callback(err);
+		var live = data.items.length > 0;
+		return callback(null, live, live ? data.items[0].id.videoId : null);
+	});
+};
+
 module.exports = YouTube;

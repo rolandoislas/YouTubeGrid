@@ -1,3 +1,4 @@
+// Site menu
 !function(){
 jQuery.fn.rotate = function(degrees) {
     $(this).css({'-webkit-transform' : 'rotate('+ degrees +'deg)',
@@ -32,6 +33,25 @@ function addEvents() {
 $(document).ready(function(){
 	addEvents();
 });
+}();
+// Live stream
+!function() {
+	function checkLiveStream() {
+		$.ajax({
+			type: "GET",
+			dataType:"json",
+			url: "/ajax/liveStatus",
+			success: function(data) {
+				if (data.live)
+					loadVideo(data.id);
+			}  
+		});
+	}
+	
+	$(document).ready(function(){
+		if (location.pathname == "/")
+			checkLiveStream();
+	});
 }();
 
 /* Auto Link https://github.com/bryanwoods/autolink-js */

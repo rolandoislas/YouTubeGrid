@@ -10,6 +10,14 @@ webServer.addGet("/", function(req, res) {
 		description: "Rolando Islas' site of gaming videos and streams."
 	});
 });
+// Live status
+webServer.addGet("/ajax/liveStatus", function(req, res) {
+	new YouTube().isLive(function(err, live, id) {
+		if (err)
+			return res.status(500).render("pages/error");
+		res.json({live: live, id: id});
+	});
+});
 // List
 webServer.addGet("/ajax/list/:token?", function(req, res) {
 	if (typeof(req.params.token) === "undefined")
