@@ -9,7 +9,7 @@ Http.prototype.run = function() {
 	var app = new this.Express();
 	app.set('port', this.port);
 	if (process.env.NODE_ENV === "production") {
-		app.use(redirectHeroku);
+		app.use(redirectAddonDomains);
 		app.use(forceSsl);
 	}
 	
@@ -36,13 +36,20 @@ function handle404(req, res, next) {
 	res.render("pages/404");
 }
 
-function redirectHeroku(req, res, next) {
-	if (typeof(process.env.URL) !== "undefined" && req.hostname.indexOf("herokuapp.com") > -1)
+function redirectAddonDomains(req, res, next) {
+	var h = req.hostname;
+	if (typeof(process.env.URL) === "undefined")
+		return next();
+	if (h.indexOf("herokuapp.com") > -1
+		|| h.indexOf("rolandoislas.info") > -1
+		|| (h.indexOf("rolandoislas.com") > -1 && h.indexOf("www.") == -1 && h.indexOf("nossl.") == -1))
 		return res.redirect(301, process.env.URL);
 	return next();
 }
 
 function forceSsl(req, res, next) {
+	if (req.hostname.indexOf("nossl.") > -1)
+		return next();
 	if (req.headers['x-forwarded-proto'] !== 'https' && req.headers['cf-visitor'] !== "{\"scheme\":\"https\"}")
         return res.redirect(301, ['https://', req.get('Host'), req.url].join(''));
     return next();
