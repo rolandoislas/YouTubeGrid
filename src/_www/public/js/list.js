@@ -27,9 +27,22 @@ function setMainVideoThumb(data) {
 	if (typeof(thumb) === "undefined" || typeof(thumb.data("id")) !== "undefined")
 		return;
 	thumb
-	.css("background", "url(" + data.items[0].snippet.thumbnails.high.url.replace("hq", "maxres") + ")")
-	.attr("title", data.items[0].snippet.title)
-	.data("id", data.items[0].id.videoId);
+		.attr("title", data.items[0].snippet.title)
+		.data("id", data.items[0].id.videoId);
+	var loadMax = function() {
+		if (this.width > 1280)
+			thumb.css("background-image", "url(" + data.items[0].snippet.thumbnails.high.url.replace("hq", "maxres") + ")");
+		else
+			loadHigh();
+	};
+	var loadHigh = function() {
+		thumb.css("background-image", "url(" + data.items[0].snippet.thumbnails.high.url + ")")
+			.css("background-position-y", "-100px");
+	};
+	$("<img>")
+		.on("load", loadMax)
+		.on("error", loadHigh)
+		.attr("src", data.items[0].snippet.thumbnails.high.url.replace("hq", "maxres"));
 }
 
 function appendVideos(data) {
