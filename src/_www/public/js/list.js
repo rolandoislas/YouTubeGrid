@@ -30,7 +30,7 @@ function setMainVideoThumb(data) {
 		.attr("title", data.items[0].snippet.title)
 		.data("id", data.items[0].id.videoId);
 	var loadMax = function() {
-		if (this.width > 1280)
+		if (this.width >= 1280)
 			thumb.css("background-image", "url(" + data.items[0].snippet.thumbnails.high.url.replace("hq", "maxres") + ")");
 		else
 			loadHigh();
