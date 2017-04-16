@@ -40,9 +40,7 @@ function redirectAddonDomains(req, res, next) {
 	var h = req.hostname;
 	if (typeof(process.env.URL) === "undefined")
 		return next();
-	if (h.indexOf("herokuapp.com") > -1
-		|| h.indexOf("rolandoislas.info") > -1
-		|| (h.indexOf("rolandoislas.com") > -1 && h.indexOf("www.") == -1 && h.indexOf("nossl.") == -1))
+	if (h.indexOf("herokuapp.com") > -1)
 		return res.redirect(301, process.env.URL);
 	return next();
 }
