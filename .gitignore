@@ -4,3 +4,4 @@ Dockerfile
 docker-compose.yml
 .vscode/
 jsconfig.json
+.idea/
